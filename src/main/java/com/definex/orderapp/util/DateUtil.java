@@ -17,4 +17,10 @@ public class DateUtil {
         calendar.set(Calendar.AM_PM,0);
         return calendar.getTime();
     }
+
+    public Calendar dateToCalendar(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
 }

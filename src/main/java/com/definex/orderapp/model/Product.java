@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Product {
     private Integer id;
     private String productName;
-    private Integer unitPrice;
+    private Double unitPrice;
 
     @Override
     public boolean equals(Object o) {

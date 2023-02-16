@@ -1,19 +1,18 @@
 package com.definex.orderapp.service;
 
 import com.definex.orderapp.model.Customer;
+import com.definex.orderapp.util.DateUtil;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Setter
 @Getter
 public class CustomerServiceImpl implements CustomerService {
+    DateUtil dateUtil = new DateUtil();
     private Set<Customer> customerList = new HashSet<>();
 
     @Override
@@ -25,7 +24,14 @@ public class CustomerServiceImpl implements CustomerService {
         customerList.add(customer);
     }
 
-    public Optional<Customer> getCustomerById(Integer id) {
-        return customerList.stream().filter(customer -> customer.getId().equals(id)).findFirst();
+    public List<Integer> getCustomerByMonth(Date date) {
+        return customerList.stream().filter(customer ->
+                        Objects.equals(dateUtil.dateToCalendar(customer.getCreatedDate()).get(Calendar.YEAR), dateUtil.dateToCalendar(date).get(Calendar.YEAR)) &&
+                                Objects.equals(dateUtil.dateToCalendar(customer.getCreatedDate()).get(Calendar.MONTH), dateUtil.dateToCalendar(date).get(Calendar.MONTH)))
+                .map(Customer::getId).collect(Collectors.toList());
+    }
+
+    public List<String> getCustomerByListId(List<Integer> customerIdList) {
+        return customerList.stream().filter(customer -> customerIdList.contains(customer.getId())).map(Customer::getName).toList();
     }
 }

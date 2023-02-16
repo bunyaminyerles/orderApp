@@ -5,6 +5,7 @@ import com.definex.orderapp.model.Order;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,9 +20,11 @@ public class OrderServiceImpl implements OrderService {
                 Invoice
                         .builder()
                         .id(InvoiceServiceImpl.getLastInvoiceId()+1)
+                        .orderId(order.getId())
+                        .invoiceCreatedDate(order.getCreatedDate())
                         .sellerId(order.getSellerId())
                         .customerId(order.getCustomerId())
-                        .invoiceAmount(order.getQuantity() * ProductServiceImpl.getProduct(order.getProductId()).get().getUnitPrice())
+                        .invoiceAmount((order.getQuantity() * ProductServiceImpl.getProduct(order.getProductId()).get().getUnitPrice()))
                         .build());
     }
 }

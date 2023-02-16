@@ -13,7 +13,7 @@ public class Invoice {
     private Integer orderId;
     private Integer customerId;
     private Integer sellerId;
-    private Integer invoiceAmount;
+    private Double invoiceAmount;
     private Date invoiceCreatedDate;
     @Override
     public boolean equals(Object o) {

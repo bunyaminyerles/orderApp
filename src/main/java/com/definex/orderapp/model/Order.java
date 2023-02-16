@@ -2,6 +2,7 @@ package com.definex.orderapp.model;
 
 import lombok.*;
 
+import java.util.Date;
 import java.util.Objects;
 
 @Getter
@@ -13,6 +14,7 @@ public class Order {
     private Integer sellerId;
     private Integer productId;
     private Integer quantity;
+    private Date createdDate;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

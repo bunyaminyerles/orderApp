@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,4 +23,5 @@ public class SellerServiceImpl implements SellerService {
     public Optional<Seller> getSeller(Integer sellerId) {
         return sellerList.stream().filter(seller -> seller.getId().equals(sellerId)).findFirst();
     }
+
 }

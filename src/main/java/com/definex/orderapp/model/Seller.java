@@ -12,6 +12,7 @@ import java.util.Objects;
 @Setter
 @Builder
 public class Seller {
+
     private Integer id;
     private String sellerName;
     private String sector;
